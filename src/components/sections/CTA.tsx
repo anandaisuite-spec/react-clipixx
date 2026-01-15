@@ -87,26 +87,10 @@ export default function CTA({ onGetStarted }: CTAProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="mb-12"
         >
           <Button size="lg" onClick={onGetStarted}>
             Get Started
           </Button>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="flex flex-wrap justify-center gap-x-8 gap-y-4"
-        >
-          {benefits.map((benefit) => (
-            <div key={benefit} className="flex items-center gap-2 text-sm text-dark-300">
-              <Check className="w-4 h-4 text-primary-400" />
-              <span>{benefit}</span>
-            </div>
-          ))}
         </motion.div>
       </div>
     </section>
