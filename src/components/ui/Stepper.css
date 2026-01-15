@@ -26,7 +26,13 @@
     display: flex;
     width: 100%;
     align-items: center;
-    padding: 2rem;
+    padding: 1.5rem 1rem;
+}
+
+@media (min-width: 640px) {
+    .stepper-indicator-row {
+        padding: 2rem;
+    }
 }
 
 .stepper-content-default {
@@ -35,9 +41,16 @@
 }
 
 .stepper-step-default {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     color: #fff;
+}
+
+@media (min-width: 640px) {
+    .stepper-step-default {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 }
 
 .stepper-step-default h2 {
@@ -74,9 +87,17 @@
 }
 
 .stepper-footer-container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .stepper-footer-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-bottom: 2rem;
+    }
 }
 
 .stepper-footer-nav {
@@ -124,10 +145,16 @@
     color: #fff;
     font-weight: 500;
     letter-spacing: -0.025em;
-    padding: 0.625rem 1.25rem;
+    padding: 0.625rem 1rem;
     cursor: pointer;
     border: none;
     font-size: 0.875rem;
+}
+
+@media (min-width: 640px) {
+    .stepper-next-button {
+        padding: 0.625rem 1.25rem;
+    }
 }
 
 .stepper-next-button:hover {
@@ -149,12 +176,19 @@
 
 .stepper-indicator-inner {
     display: flex;
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 2rem;
+    width: 2rem;
     align-items: center;
     justify-content: center;
     border-radius: 9999px;
     font-weight: 600;
+}
+
+@media (min-width: 640px) {
+    .stepper-indicator-inner {
+        height: 2.5rem;
+        width: 2.5rem;
+    }
 }
 
 .stepper-active-dot {
