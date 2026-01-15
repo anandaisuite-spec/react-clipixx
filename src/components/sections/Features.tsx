@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import MagicBento from './MagicBento';
-import ScrollFloat from '../ui/ScrollFloat';
 
 export default function Features() {
   return (
@@ -18,16 +17,9 @@ export default function Features() {
           <span className="inline-block px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-primary-400 bg-primary-500/10 rounded-full mb-6">
             Why Choose Us
           </span>
-          <ScrollFloat
-            animationDuration={1}
-            ease="back.inOut(2)"
-            scrollStart="center bottom+=50%"
-            scrollEnd="bottom bottom-=40%"
-            stagger={0.03}
-            containerClassName="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
-          >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
             The ultimate celebrity experience
-          </ScrollFloat>
+          </h2>
           <p className="text-lg text-dark-400 max-w-2xl mx-auto">
             Discover what makes Clippixx the premier platform for personalized
             celebrity video messages.

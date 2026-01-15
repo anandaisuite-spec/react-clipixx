@@ -2,7 +2,6 @@ import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Search, MessageSquare, Video, Download } from 'lucide-react';
-import ScrollFloat from '../ui/ScrollFloat';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -99,16 +98,9 @@ export default function HowItWorks() {
           <span className="inline-block px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-primary-400 bg-primary-500/10 rounded-full mb-6">
             Simple Process
           </span>
-          <ScrollFloat
-            animationDuration={1}
-            ease="back.inOut(2)"
-            scrollStart="center bottom+=50%"
-            scrollEnd="bottom bottom-=40%"
-            stagger={0.03}
-            containerClassName="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
-          >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
             How Clippixx works
-          </ScrollFloat>
+          </h2>
           <p className="text-lg text-dark-400 max-w-2xl mx-auto">
             Getting a personalized video from your favorite celebrity has never
             been easier.
