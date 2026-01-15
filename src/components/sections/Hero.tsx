@@ -94,26 +94,32 @@ export default function Hero({ onGetStarted }: HeroProps) {
         <div className="max-w-4xl">
           <h1
             ref={headlineRef}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-[90px] font-bold leading-[1.05] tracking-tight text-white"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight text-white"
           >
-            Get paid to connect
+            Personalized videos
             <br />
-            with{' '}
+            from your{' '}
             <span className="font-serif italic font-normal text-white/90">
-              your fans.
+              favorite
+            </span>
+            <br />
+            <span className="font-serif italic font-normal text-white/90">
+              stars.
             </span>
           </h1>
 
           <p
             ref={subheadlineRef}
-            className="mt-8 text-xl md:text-2xl text-white/60 max-w-2xl leading-relaxed font-light"
+            className="mt-8 text-lg md:text-xl text-dark-300 max-w-xl leading-relaxed"
           >
-            Turn your influence into income. Book personalized video shoutouts in minutes.
+            The impossible gift, made possible. Connect with thousands of
+            actors, athletes, and creators for a moment they'll never forget.
           </p>
 
-          <div ref={ctaRef} className="mt-12">
-            <Button size="lg" onClick={onGetStarted} className="text-base px-12 py-5">
-              Start Earning
+          <div ref={ctaRef} className="mt-10 flex flex-wrap gap-4">
+            <Button size="lg" onClick={onGetStarted}>Get Started</Button>
+            <Button variant="outline" size="lg">
+              How It Works
             </Button>
           </div>
         </div>

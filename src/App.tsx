@@ -4,11 +4,10 @@ import Navigation from './components/layout/Navigation';
 import Hero from './components/sections/Hero';
 import Footer from './components/layout/Footer';
 import CreatorPage from './pages/CreatorPage';
+import CurvedLoop from './components/ui/CurvedLoop';
 import LightPillar from './components/ui/LightPillar';
 
-const Transformation = lazy(() => import('./components/sections/Transformation'));
 const Features = lazy(() => import('./components/sections/Features'));
-const SocialProof = lazy(() => import('./components/sections/SocialProof'));
 const HowItWorks = lazy(() => import('./components/sections/HowItWorks'));
 const JoinSection = lazy(() => import('./components/sections/JoinSection'));
 const CTA = lazy(() => import('./components/sections/CTA'));
@@ -123,14 +122,15 @@ export default function App() {
           />
           <main>
             <Hero onGetStarted={openSignup} />
-            <Suspense fallback={<SectionLoader />}>
-              <Transformation />
-            </Suspense>
+            <CurvedLoop
+              marqueeText="✦ Personalized Videos ✦ Celebrity Shoutouts ✦ Unforgettable Moments ✦ Connect with Stars ✦"
+              speed={2}
+              curveAmount={200}
+              direction="left"
+              interactive={true}
+            />
             <Suspense fallback={<SectionLoader />}>
               <Features />
-            </Suspense>
-            <Suspense fallback={<SectionLoader />}>
-              <SocialProof />
             </Suspense>
             <Suspense fallback={<SectionLoader />}>
               <HowItWorks />

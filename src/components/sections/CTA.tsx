@@ -2,9 +2,17 @@ import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
+import { Check } from 'lucide-react';
 import Button from '../ui/Button';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const benefits = [
+  'Access to 10,000+ celebrities',
+  '7-day average turnaround',
+  'Money-back guarantee',
+  '24/7 customer support',
+];
 
 type CTAProps = {
   onGetStarted?: () => void;
@@ -38,18 +46,29 @@ export default function CTA({ onGetStarted }: CTAProps) {
     <section
       ref={sectionRef}
       id="talent"
-      className="relative py-32 md:py-40 overflow-hidden"
+      className="relative py-24 md:py-32 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-dark-950 via-primary-950/5 to-dark-950" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary-600/5 rounded-full blur-[150px]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-950/50 via-transparent to-transparent" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-primary-600/10 rounded-full blur-[200px]" />
 
       <div className="relative max-w-5xl mx-auto px-6 lg:px-8 text-center">
+        <motion.span
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="inline-block px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-primary-400 bg-primary-500/10 rounded-full mb-6"
+        >
+          Get Started Today
+        </motion.span>
+
         <h2
           ref={headlineRef}
-          className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-[1.1]"
+          className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight"
         >
-          Your audience is{' '}
-          <span className="font-serif italic font-normal text-white/80">waiting.</span>
+          Ready to create
+          <br />
+          <span className="font-serif italic font-normal">unforgettable</span>{' '}
+          moments?
         </h2>
 
         <motion.p
@@ -57,9 +76,10 @@ export default function CTA({ onGetStarted }: CTAProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-xl text-white/50 max-w-2xl mx-auto mb-12"
+          className="text-lg md:text-xl text-dark-300 max-w-2xl mx-auto mb-12"
         >
-          Join the platform built for creators who value their time.
+          Join millions of fans who have surprised their loved ones with
+          personalized celebrity video messages.
         </motion.p>
 
         <motion.div
@@ -67,10 +87,26 @@ export default function CTA({ onGetStarted }: CTAProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
+          className="mb-12"
         >
-          <Button size="lg" onClick={onGetStarted} className="text-base px-12 py-5">
-            Start Earning
+          <Button size="lg" onClick={onGetStarted}>
+            Get Started
           </Button>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="flex flex-wrap justify-center gap-x-8 gap-y-4"
+        >
+          {benefits.map((benefit) => (
+            <div key={benefit} className="flex items-center gap-2 text-sm text-dark-300">
+              <Check className="w-4 h-4 text-primary-400" />
+              <span>{benefit}</span>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>
