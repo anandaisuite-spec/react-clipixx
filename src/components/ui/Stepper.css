@@ -225,3 +225,39 @@
     width: 1rem;
     color: #fff;
 }
+
+/* Login modal stepper overrides */
+.login-stepper {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    max-width: none;
+    padding: 0;
+}
+
+.login-stepper .stepper-indicator-row {
+    padding: 1rem 0;
+    justify-content: center;
+}
+
+@media (min-width: 640px) {
+    .login-stepper .stepper-indicator-row {
+        padding: 1.5rem 0;
+    }
+}
+
+.login-stepper-content {
+    padding: 0;
+}
+
+.login-stepper .stepper-step-default {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.login-stepper .stepper-footer-container {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+}

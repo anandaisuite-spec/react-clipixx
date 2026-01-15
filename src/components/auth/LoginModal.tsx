@@ -142,6 +142,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                     backButtonText="Back"
                     stepCircleContainerClassName="login-stepper"
                     contentClassName="login-stepper-content"
+                    footerClassName="login-stepper-footer"
                   >
                     {/* Step 1: Choose Account Type */}
                     <Step>
