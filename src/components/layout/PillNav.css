@@ -5,10 +5,10 @@
     justify-content: center;
     height: 36px;
     padding: 0 16px;
-    background: rgba(255, 255, 255, 0.08);
+    background: transparent;
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
-    border-radius: 9999px;
+    border-radius: 0;
     box-sizing: border-box;
     font-weight: 500;
     font-size: 14px;
@@ -16,13 +16,13 @@
     white-space: nowrap;
     cursor: pointer;
     position: relative;
-    overflow: hidden;
-    transition: background 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: visible;
+    transition: color 0.3s ease;
+    border: none;
 }
 
 .nav-pill:hover {
-    background: rgba(255, 255, 255, 0.12);
+    background: transparent;
     color: #fff;
 }
 
