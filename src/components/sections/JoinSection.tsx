@@ -84,9 +84,9 @@ export default function JoinSection({ onSuggestStar, onFeedback }: JoinSectionPr
               </ul>
 
               <Button
-                variant="outline"
+                variant="primary"
                 onClick={onSuggestStar}
-                className="group-hover:border-primary-400 group-hover:bg-primary-500/10 transition-all duration-300"
+                className="shadow-lg shadow-primary-500/20 hover:shadow-primary-500/40 transition-all duration-300"
               >
                 <span className="flex items-center gap-2">
                   Suggest a Star
@@ -136,9 +136,9 @@ export default function JoinSection({ onSuggestStar, onFeedback }: JoinSectionPr
               </ul>
 
               <Button
-                variant="outline"
+                variant="primary"
                 onClick={onFeedback}
-                className="group-hover:border-cyan-400 group-hover:bg-cyan-500/10 transition-all duration-300"
+                className="shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300"
               >
                 <span className="flex items-center gap-2">
                   Send Feedback
