@@ -160,10 +160,10 @@
     justify-content: center;
     height: 100%;
     padding: 0 var(--pill-pad-x);
-    background: var(--pill-bg, #fff);
-    color: var(--pill-text, var(--base, #000));
+    background: transparent;
+    color: var(--pill-bg, #fff);
     text-decoration: none;
-    border-radius: 9999px;
+    border-radius: 0;
     box-sizing: border-box;
     font-weight: 600;
     font-size: 14px;
