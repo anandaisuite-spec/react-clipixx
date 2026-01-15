@@ -15,9 +15,10 @@ const navLinks = [
 type NavigationProps = {
   onBrowseClick?: () => void;
   onCreatorClick?: () => void;
+  onLoginClick?: () => void;
 };
 
-export default function Navigation({ onBrowseClick, onCreatorClick }: NavigationProps) {
+export default function Navigation({ onBrowseClick, onCreatorClick, onLoginClick }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const circleRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -181,6 +182,9 @@ export default function Navigation({ onBrowseClick, onCreatorClick }: Navigation
                 <Button variant="outline" size="sm" onClick={onBrowseClick}>
                   Find a Star
                 </Button>
+                <Button variant="outline" size="sm" onClick={onLoginClick}>
+                  Log In
+                </Button>
               </div>
 
               <button
@@ -247,7 +251,7 @@ export default function Navigation({ onBrowseClick, onCreatorClick }: Navigation
                     {link.name}
                   </motion.a>
                 ))}
-                <div className="pt-6 border-t border-white/10">
+                <div className="pt-6 border-t border-white/10 space-y-3">
                   <Button
                     variant="outline"
                     className="w-full"
@@ -257,6 +261,16 @@ export default function Navigation({ onBrowseClick, onCreatorClick }: Navigation
                     }}
                   >
                     Find a Star
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="w-full"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      onLoginClick?.();
+                    }}
+                  >
+                    Log In
                   </Button>
                 </div>
               </div>

@@ -16,6 +16,7 @@ const BrowseStars = lazy(() => import('./components/sections/BrowseStars'));
 const SuggestStarForm = lazy(() => import('./components/forms/SuggestStarForm'));
 const FeedbackForm = lazy(() => import('./components/forms/FeedbackForm'));
 const CreatorApplicationForm = lazy(() => import('./components/forms/CreatorApplicationForm'));
+const LoginModal = lazy(() => import('./components/auth/LoginModal'));
 
 function SectionLoader() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
   const [showSuggestStar, setShowSuggestStar] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
   const [showCreatorApplication, setShowCreatorApplication] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
   const [currentPage, setCurrentPage] = useState<'home' | 'creator'>('home');
 
   if (currentPage === 'creator') {
@@ -55,6 +57,7 @@ export default function App() {
             <Navigation
               onBrowseClick={() => setShowBrowse(true)}
               onCreatorClick={() => setCurrentPage('home')}
+              onLoginClick={() => setShowLogin(true)}
             />
             <main>
               <CreatorPage onApplicationClick={() => setShowCreatorApplication(true)} />
@@ -67,6 +70,13 @@ export default function App() {
           <CreatorApplicationForm
             isOpen={showCreatorApplication}
             onClose={() => setShowCreatorApplication(false)}
+          />
+        </Suspense>
+
+        <Suspense fallback={null}>
+          <LoginModal
+            isOpen={showLogin}
+            onClose={() => setShowLogin(false)}
           />
         </Suspense>
       </>
@@ -95,6 +105,7 @@ export default function App() {
           <Navigation
             onBrowseClick={() => setShowBrowse(true)}
             onCreatorClick={() => setCurrentPage('creator')}
+            onLoginClick={() => setShowLogin(true)}
           />
           <main>
             <Hero />
@@ -146,6 +157,20 @@ export default function App() {
           <FeedbackForm
             isOpen={showFeedback}
             onClose={() => setShowFeedback(false)}
+          />
+        </Suspense>
+
+        <Suspense fallback={null}>
+          <CreatorApplicationForm
+            isOpen={showCreatorApplication}
+            onClose={() => setShowCreatorApplication(false)}
+          />
+        </Suspense>
+
+        <Suspense fallback={null}>
+          <LoginModal
+            isOpen={showLogin}
+            onClose={() => setShowLogin(false)}
           />
         </Suspense>
       </div>
