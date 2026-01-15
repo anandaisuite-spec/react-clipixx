@@ -101,7 +101,7 @@
 }
 
 .stepper-footer-nav {
-    margin-top: 2.5rem;
+    margin-top: 1.5rem;
     display: flex;
 }
 
@@ -237,14 +237,8 @@
 }
 
 .login-stepper .stepper-indicator-row {
-    padding: 1rem 0;
+    padding: 0.75rem 0 1rem 0;
     justify-content: center;
-}
-
-@media (min-width: 640px) {
-    .login-stepper .stepper-indicator-row {
-        padding: 1.5rem 0;
-    }
 }
 
 .login-stepper-content {
