@@ -2,7 +2,11 @@ import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import Button from '../ui/Button';
 
-export default function Hero() {
+type HeroProps = {
+  onGetStarted?: () => void;
+};
+
+export default function Hero({ onGetStarted }: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subheadlineRef = useRef<HTMLParagraphElement>(null);
@@ -113,7 +117,7 @@ export default function Hero() {
           </p>
 
           <div ref={ctaRef} className="mt-10 flex flex-wrap gap-4">
-            <Button size="lg">Explore Categories</Button>
+            <Button size="lg" onClick={onGetStarted}>Get Started</Button>
             <Button variant="outline" size="lg">
               How It Works
             </Button>

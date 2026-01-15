@@ -32,7 +32,18 @@ export default function App() {
   const [showFeedback, setShowFeedback] = useState(false);
   const [showCreatorApplication, setShowCreatorApplication] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [loginMode, setLoginMode] = useState<'login' | 'signup'>('login');
   const [currentPage, setCurrentPage] = useState<'home' | 'creator'>('home');
+
+  const openLogin = () => {
+    setLoginMode('login');
+    setShowLogin(true);
+  };
+
+  const openSignup = () => {
+    setLoginMode('signup');
+    setShowLogin(true);
+  };
 
   if (currentPage === 'creator') {
     return (
@@ -57,7 +68,8 @@ export default function App() {
             <Navigation
               onBrowseClick={() => setShowBrowse(true)}
               onCreatorClick={() => setCurrentPage('home')}
-              onLoginClick={() => setShowLogin(true)}
+              onLoginClick={openLogin}
+              onSignupClick={openSignup}
             />
             <main>
               <CreatorPage onApplicationClick={() => setShowCreatorApplication(true)} />
@@ -77,6 +89,7 @@ export default function App() {
           <LoginModal
             isOpen={showLogin}
             onClose={() => setShowLogin(false)}
+            initialMode={loginMode}
           />
         </Suspense>
       </>
@@ -105,10 +118,11 @@ export default function App() {
           <Navigation
             onBrowseClick={() => setShowBrowse(true)}
             onCreatorClick={() => setCurrentPage('creator')}
-            onLoginClick={() => setShowLogin(true)}
+            onLoginClick={openLogin}
+            onSignupClick={openSignup}
           />
           <main>
-            <Hero />
+            <Hero onGetStarted={openSignup} />
             <CurvedLoop
               marqueeText="✦ Personalized Videos ✦ Celebrity Shoutouts ✦ Unforgettable Moments ✦ Connect with Stars ✦"
               speed={2}
@@ -132,7 +146,7 @@ export default function App() {
               />
             </Suspense>
             <Suspense fallback={<SectionLoader />}>
-              <CTA />
+              <CTA onGetStarted={openSignup} />
             </Suspense>
           </main>
           <Footer />
@@ -171,6 +185,7 @@ export default function App() {
           <LoginModal
             isOpen={showLogin}
             onClose={() => setShowLogin(false)}
+            initialMode={loginMode}
           />
         </Suspense>
       </div>

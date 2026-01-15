@@ -1,8 +1,8 @@
-import { useRef, useLayoutEffect, useState } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
-import { ArrowRight, Check } from 'lucide-react';
+import { Check } from 'lucide-react';
 import Button from '../ui/Button';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -14,10 +14,13 @@ const benefits = [
   '24/7 customer support',
 ];
 
-export default function CTA() {
+type CTAProps = {
+  onGetStarted?: () => void;
+};
+
+export default function CTA({ onGetStarted }: CTAProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
-  const [email, setEmail] = useState('');
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -38,12 +41,6 @@ export default function CTA() {
 
     return () => ctx.revert();
   }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Email submitted:', email);
-    setEmail('');
-  };
 
   return (
     <section
@@ -79,33 +76,23 @@ export default function CTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-lg md:text-xl text-dark-300 max-w-2xl mx-auto mb-10"
+          className="text-lg md:text-xl text-dark-300 max-w-2xl mx-auto mb-12"
         >
           Join millions of fans who have surprised their loved ones with
           personalized celebrity video messages.
         </motion.p>
 
-        <motion.form
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          onSubmit={handleSubmit}
-          className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto mb-12"
+          className="mb-12"
         >
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            className="flex-1 px-6 py-4 rounded-full bg-white/10 border border-white/10 text-white placeholder-dark-400 focus:outline-none focus:border-primary-500 transition-colors"
-            required
-          />
-          <Button type="submit" className="flex items-center justify-center gap-2">
+          <Button size="lg" onClick={onGetStarted}>
             Get Started
-            <ArrowRight className="w-4 h-4" />
           </Button>
-        </motion.form>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}

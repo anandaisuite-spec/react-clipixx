@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, User, Star, Mail, Lock } from 'lucide-react';
 import Stepper, { Step } from '../ui/Stepper';
@@ -7,15 +7,22 @@ import { supabase } from '../../lib/supabase';
 type LoginModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  initialMode?: 'login' | 'signup';
 };
 
-export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
+export default function LoginModal({ isOpen, onClose, initialMode = 'login' }: LoginModalProps) {
   const [accountType, setAccountType] = useState<'fan' | 'creator' | null>(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(initialMode === 'signup');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsSignUp(initialMode === 'signup');
+    }
+  }, [isOpen, initialMode]);
 
   const handleAuth = async () => {
     setError('');
@@ -48,7 +55,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
     setAccountType(null);
     setEmail('');
     setPassword('');
-    setIsSignUp(false);
+    setIsSignUp(initialMode === 'signup');
     setError('');
     setSuccess(false);
     onClose();

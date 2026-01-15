@@ -16,9 +16,10 @@ type NavigationProps = {
   onBrowseClick?: () => void;
   onCreatorClick?: () => void;
   onLoginClick?: () => void;
+  onSignupClick?: () => void;
 };
 
-export default function Navigation({ onBrowseClick, onCreatorClick, onLoginClick }: NavigationProps) {
+export default function Navigation({ onBrowseClick, onCreatorClick, onLoginClick, onSignupClick }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const circleRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -170,9 +171,12 @@ export default function Navigation({ onBrowseClick, onCreatorClick, onLoginClick
                 ))}
               </div>
 
-              <div className="hidden lg:flex items-center gap-4">
+              <div className="hidden lg:flex items-center gap-3">
                 <Button variant="outline" size="sm" onClick={onLoginClick}>
                   Log In
+                </Button>
+                <Button size="sm" onClick={onSignupClick}>
+                  Sign Up
                 </Button>
               </div>
 
@@ -240,7 +244,7 @@ export default function Navigation({ onBrowseClick, onCreatorClick, onLoginClick
                     {link.name}
                   </motion.a>
                 ))}
-                <div className="pt-6 border-t border-white/10">
+                <div className="pt-6 border-t border-white/10 space-y-3">
                   <Button
                     variant="outline"
                     className="w-full"
@@ -250,6 +254,15 @@ export default function Navigation({ onBrowseClick, onCreatorClick, onLoginClick
                     }}
                   >
                     Log In
+                  </Button>
+                  <Button
+                    className="w-full"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      onSignupClick?.();
+                    }}
+                  >
+                    Sign Up
                   </Button>
                 </div>
               </div>
