@@ -132,75 +132,28 @@
 
 @media (min-width: 600px) {
   .card-grid {
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: minmax(160px, auto);
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(180px, auto);
     gap: 1em;
   }
 
   .magic-bento-card {
     aspect-ratio: auto;
-    min-height: 160px;
-  }
-
-  /* First card - wide, spans 3 columns */
-  .magic-bento-card:nth-child(1) {
-    grid-column: span 3;
-    min-height: 200px;
-  }
-
-  /* Second card - square */
-  .magic-bento-card:nth-child(2) {
-    grid-column: span 1;
-    min-height: 200px;
-  }
-
-  /* Third card - square */
-  .magic-bento-card:nth-child(3) {
-    grid-column: span 1;
-    min-height: 200px;
-  }
-
-  /* Fourth card - wide, spans 3 columns */
-  .magic-bento-card:nth-child(4) {
-    grid-column: span 3;
-    min-height: 200px;
+    min-height: 220px;
   }
 }
 
 @media (min-width: 1024px) {
   .card-grid {
-    grid-template-columns: repeat(6, 1fr);
-    grid-auto-rows: minmax(200px, auto);
-    max-width: 1100px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(280px, auto);
+    max-width: 1400px;
     gap: 1.2em;
   }
 
-  /* First card - medium rectangle */
-  .magic-bento-card:nth-child(1) {
-    grid-column: span 2;
-    grid-row: span 1;
-    min-height: 240px;
-  }
-
-  /* Second card - tall */
-  .magic-bento-card:nth-child(2) {
-    grid-column: span 2;
-    grid-row: span 2;
-    min-height: 480px;
-  }
-
-  /* Third card - medium rectangle */
-  .magic-bento-card:nth-child(3) {
-    grid-column: span 2;
-    grid-row: span 1;
-    min-height: 240px;
-  }
-
-  /* Fourth card - wide */
-  .magic-bento-card:nth-child(4) {
-    grid-column: span 4;
-    grid-row: span 1;
-    min-height: 220px;
+  .magic-bento-card {
+    grid-column: span 1;
+    min-height: 320px;
   }
 }
 
