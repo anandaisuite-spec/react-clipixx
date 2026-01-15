@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Twitter, Instagram, Youtube, Facebook } from 'lucide-react';
+import { Twitter, Instagram, Facebook } from 'lucide-react';
 
 const footerLinks = {
   Product: ['Categories', 'Pricing', 'How It Works', 'For Business'],
@@ -11,7 +11,6 @@ const footerLinks = {
 const socialLinks = [
   { icon: Twitter, href: '#', label: 'Twitter' },
   { icon: Instagram, href: '#', label: 'Instagram' },
-  { icon: Youtube, href: '#', label: 'Youtube' },
   { icon: Facebook, href: '#', label: 'Facebook' },
 ];
 
