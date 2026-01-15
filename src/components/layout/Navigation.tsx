@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Search } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { gsap } from 'gsap';
 import Button from '../ui/Button';
 import './PillNav.css';
@@ -171,17 +171,6 @@ export default function Navigation({ onBrowseClick, onCreatorClick, onLoginClick
               </div>
 
               <div className="hidden lg:flex items-center gap-4">
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={onBrowseClick}
-                  className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white/80 hover:text-white hover:border-white transition-all"
-                >
-                  <Search className="w-4 h-4" />
-                </motion.button>
-                <Button variant="outline" size="sm" onClick={onBrowseClick}>
-                  Find a Star
-                </Button>
                 <Button variant="outline" size="sm" onClick={onLoginClick}>
                   Log In
                 </Button>
@@ -251,17 +240,7 @@ export default function Navigation({ onBrowseClick, onCreatorClick, onLoginClick
                     {link.name}
                   </motion.a>
                 ))}
-                <div className="pt-6 border-t border-white/10 space-y-3">
-                  <Button
-                    variant="outline"
-                    className="w-full"
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      onBrowseClick?.();
-                    }}
-                  >
-                    Find a Star
-                  </Button>
+                <div className="pt-6 border-t border-white/10">
                   <Button
                     variant="outline"
                     className="w-full"
