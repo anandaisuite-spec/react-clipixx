@@ -1,20 +1,28 @@
 import { DollarSign, Calendar, CheckCircle, Shield, TrendingUp, Users } from 'lucide-react';
 import Button from '../components/ui/Button';
 
-export default function CreatorPage() {
+type CreatorPageProps = {
+  onApplicationClick?: () => void;
+};
+
+export default function CreatorPage({ onApplicationClick }: CreatorPageProps) {
   return (
     <div className="min-h-screen bg-dark-950 text-white">
-      <CreatorHero />
+      <CreatorHero onApplicationClick={onApplicationClick} />
       <Earnings />
       <HowItWorks />
       <ControlAndSafety />
       <SocialProof />
-      <FinalCTA />
+      <FinalCTA onApplicationClick={onApplicationClick} />
     </div>
   );
 }
 
-function CreatorHero() {
+type CreatorHeroProps = {
+  onApplicationClick?: () => void;
+};
+
+function CreatorHero({ onApplicationClick }: CreatorHeroProps) {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-[#1a0533] via-dark-900 to-[#0c1929]" />
@@ -40,7 +48,7 @@ function CreatorHero() {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
-            <Button size="lg">Join as a Creator</Button>
+            <Button size="lg" onClick={onApplicationClick}>Join as a Creator</Button>
             <Button variant="outline" size="lg">
               See How It Works
             </Button>
@@ -326,7 +334,11 @@ function SocialProof() {
   );
 }
 
-function FinalCTA() {
+type FinalCTAProps = {
+  onApplicationClick?: () => void;
+};
+
+function FinalCTA({ onApplicationClick }: FinalCTAProps) {
   return (
     <section className="relative py-24 md:py-32 bg-dark-950">
       <div className="absolute inset-0 bg-gradient-to-b from-primary-950/20 to-transparent" />
@@ -338,7 +350,7 @@ function FinalCTA() {
         <p className="text-lg md:text-xl text-dark-300 mb-10 max-w-2xl mx-auto">
           Join Clippixx today and start earning from your fans. No cost to join, no commitment required.
         </p>
-        <Button size="lg">Start Earning From Fans</Button>
+        <Button size="lg" onClick={onApplicationClick}>Start Earning From Fans</Button>
       </div>
     </section>
   );

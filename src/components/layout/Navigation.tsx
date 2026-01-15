@@ -9,14 +9,15 @@ const navLinks = [
   { name: 'Categories', href: '#categories' },
   { name: 'How It Works', href: '#how-it-works' },
   { name: 'For Business', href: '#business' },
-  { name: 'Join as Talent', href: '#talent' },
+  { name: 'Join as Talent', href: '#talent', isCreatorLink: true },
 ];
 
 type NavigationProps = {
   onBrowseClick?: () => void;
+  onCreatorClick?: () => void;
 };
 
-export default function Navigation({ onBrowseClick }: NavigationProps) {
+export default function Navigation({ onBrowseClick, onCreatorClick }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const circleRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -141,6 +142,12 @@ export default function Navigation({ onBrowseClick }: NavigationProps) {
                   <a
                     key={link.name}
                     href={link.href}
+                    onClick={(e) => {
+                      if ('isCreatorLink' in link && link.isCreatorLink) {
+                        e.preventDefault();
+                        onCreatorClick?.();
+                      }
+                    }}
                     className="nav-pill"
                     onMouseEnter={() => handleEnter(i)}
                     onMouseLeave={() => handleLeave(i)}
@@ -229,7 +236,13 @@ export default function Navigation({ onBrowseClick }: NavigationProps) {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     className="text-lg text-white/80 hover:text-white transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={(e) => {
+                      setIsMobileMenuOpen(false);
+                      if ('isCreatorLink' in link && link.isCreatorLink) {
+                        e.preventDefault();
+                        onCreatorClick?.();
+                      }
+                    }}
                   >
                     {link.name}
                   </motion.a>

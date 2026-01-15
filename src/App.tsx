@@ -15,6 +15,7 @@ const CTA = lazy(() => import('./components/sections/CTA'));
 const BrowseStars = lazy(() => import('./components/sections/BrowseStars'));
 const SuggestStarForm = lazy(() => import('./components/forms/SuggestStarForm'));
 const FeedbackForm = lazy(() => import('./components/forms/FeedbackForm'));
+const CreatorApplicationForm = lazy(() => import('./components/forms/CreatorApplicationForm'));
 
 function SectionLoader() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
   const [showBrowse, setShowBrowse] = useState(false);
   const [showSuggestStar, setShowSuggestStar] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
+  const [showCreatorApplication, setShowCreatorApplication] = useState(false);
   const [currentPage, setCurrentPage] = useState<'home' | 'creator'>('home');
 
   if (currentPage === 'creator') {
@@ -50,13 +52,23 @@ export default function App() {
             />
           </div>
           <div className="relative z-10">
-            <Navigation onBrowseClick={() => setShowBrowse(true)} />
+            <Navigation
+              onBrowseClick={() => setShowBrowse(true)}
+              onCreatorClick={() => setCurrentPage('home')}
+            />
             <main>
-              <CreatorPage />
+              <CreatorPage onApplicationClick={() => setShowCreatorApplication(true)} />
             </main>
             <Footer />
           </div>
         </div>
+
+        <Suspense fallback={null}>
+          <CreatorApplicationForm
+            isOpen={showCreatorApplication}
+            onClose={() => setShowCreatorApplication(false)}
+          />
+        </Suspense>
       </>
     );
   }
@@ -80,7 +92,10 @@ export default function App() {
           />
         </div>
         <div className="relative z-10">
-          <Navigation onBrowseClick={() => setShowBrowse(true)} />
+          <Navigation
+            onBrowseClick={() => setShowBrowse(true)}
+            onCreatorClick={() => setCurrentPage('creator')}
+          />
           <main>
             <Hero />
             <CurvedLoop

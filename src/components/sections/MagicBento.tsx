@@ -34,10 +34,6 @@ const cardData = [
     }
 ];
 
-interface ParticleElement extends HTMLDivElement {
-    parentNode: ParentNode & HTMLDivElement;
-}
-
 const createParticleElement = (x: number, y: number, color = DEFAULT_GLOW_COLOR): HTMLDivElement => {
     const el = document.createElement('div');
     el.className = 'particle';
