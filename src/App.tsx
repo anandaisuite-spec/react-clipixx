@@ -9,7 +9,6 @@ import LightPillar from './components/ui/LightPillar';
 
 const Features = lazy(() => import('./components/sections/Features'));
 const HowItWorks = lazy(() => import('./components/sections/HowItWorks'));
-const Testimonials = lazy(() => import('./components/sections/Testimonials'));
 const JoinSection = lazy(() => import('./components/sections/JoinSection'));
 const CTA = lazy(() => import('./components/sections/CTA'));
 const BrowseStars = lazy(() => import('./components/sections/BrowseStars'));
@@ -135,9 +134,6 @@ export default function App() {
             </Suspense>
             <Suspense fallback={<SectionLoader />}>
               <HowItWorks />
-            </Suspense>
-            <Suspense fallback={<SectionLoader />}>
-              <Testimonials />
             </Suspense>
             <Suspense fallback={<SectionLoader />}>
               <JoinSection
