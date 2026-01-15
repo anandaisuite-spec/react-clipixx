@@ -14,7 +14,7 @@ const CurvedLoop = ({
     marqueeText = '',
     speed = 1,
     className,
-    curveAmount = 400,
+    curveAmount = 500,
     direction = 'left',
     interactive = true
 }: CurvedLoopProps) => {
