@@ -14,6 +14,9 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }: L
   const [accountType, setAccountType] = useState<'fan' | 'creator' | null>(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [phone, setPhone] = useState('');
   const [isSignUp, setIsSignUp] = useState(initialMode === 'signup');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
@@ -29,11 +32,26 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }: L
 
     try {
       if (isSignUp) {
-        const { error: signUpError } = await supabase.auth.signUp({
+        const { data, error: signUpError } = await supabase.auth.signUp({
           email,
           password,
         });
         if (signUpError) throw signUpError;
+
+        if (data.user) {
+          const { error: profileError } = await supabase
+            .from('profiles')
+            .insert({
+              id: data.user.id,
+              account_type: accountType,
+              first_name: firstName,
+              last_name: lastName,
+              phone: phone || null,
+            });
+
+          if (profileError) throw profileError;
+        }
+
         setSuccess(true);
       } else {
         const { error: signInError } = await supabase.auth.signInWithPassword({
@@ -55,6 +73,9 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }: L
     setAccountType(null);
     setEmail('');
     setPassword('');
+    setFirstName('');
+    setLastName('');
+    setPhone('');
     setIsSignUp(initialMode === 'signup');
     setError('');
     setSuccess(false);
@@ -231,44 +252,127 @@ export default function LoginModal({ isOpen, onClose, initialMode = 'login' }: L
                       </div>
                     </Step>
 
-                    {/* Step 2: Email */}
+                    {/* Step 2: Personal Info (Signup) or Email (Login) */}
                     <Step>
                       <div className="py-4">
-                        <h3 className="text-lg font-semibold text-white mb-4">
-                          Enter your email
-                        </h3>
-                        <div className="space-y-3">
-                          <div>
-                            <label className="block text-sm font-medium text-dark-300 mb-2">
-                              Email Address
-                            </label>
-                            <div className="relative">
-                              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-dark-400" />
-                              <input
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="you@example.com"
-                                className="w-full pl-11 pr-4 py-3 bg-dark-800 border border-white/10 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:border-primary-500 transition-colors"
-                              />
+                        {isSignUp ? (
+                          <>
+                            <h3 className="text-lg font-semibold text-white mb-4">
+                              Your details
+                            </h3>
+                            <div className="space-y-3">
+                              <div className="grid grid-cols-2 gap-3">
+                                <div>
+                                  <label className="block text-sm font-medium text-dark-300 mb-2">
+                                    First Name
+                                  </label>
+                                  <input
+                                    type="text"
+                                    value={firstName}
+                                    onChange={(e) => setFirstName(e.target.value)}
+                                    placeholder="John"
+                                    className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:border-primary-500 transition-colors"
+                                  />
+                                </div>
+                                <div>
+                                  <label className="block text-sm font-medium text-dark-300 mb-2">
+                                    Last Name
+                                  </label>
+                                  <input
+                                    type="text"
+                                    value={lastName}
+                                    onChange={(e) => setLastName(e.target.value)}
+                                    placeholder="Doe"
+                                    className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:border-primary-500 transition-colors"
+                                  />
+                                </div>
+                              </div>
+                              <div>
+                                <label className="block text-sm font-medium text-dark-300 mb-2">
+                                  Phone Number <span className="text-dark-500">(optional)</span>
+                                </label>
+                                <input
+                                  type="tel"
+                                  value={phone}
+                                  onChange={(e) => setPhone(e.target.value)}
+                                  placeholder="+1 (555) 000-0000"
+                                  className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:border-primary-500 transition-colors"
+                                />
+                              </div>
+                              <div className="pt-2">
+                                <button
+                                  onClick={() => setIsSignUp(!isSignUp)}
+                                  className="text-sm text-primary-400 hover:text-primary-300 transition-colors"
+                                >
+                                  Already have an account?
+                                </button>
+                              </div>
                             </div>
-                          </div>
-
-                          <div className="pt-2">
-                            <button
-                              onClick={() => setIsSignUp(!isSignUp)}
-                              className="text-sm text-primary-400 hover:text-primary-300 transition-colors"
-                            >
-                              {isSignUp
-                                ? 'Already have an account?'
-                                : "Don't have an account?"}
-                            </button>
-                          </div>
-                        </div>
+                          </>
+                        ) : (
+                          <>
+                            <h3 className="text-lg font-semibold text-white mb-4">
+                              Enter your email
+                            </h3>
+                            <div className="space-y-3">
+                              <div>
+                                <label className="block text-sm font-medium text-dark-300 mb-2">
+                                  Email Address
+                                </label>
+                                <div className="relative">
+                                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-dark-400" />
+                                  <input
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="you@example.com"
+                                    className="w-full pl-11 pr-4 py-3 bg-dark-800 border border-white/10 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:border-primary-500 transition-colors"
+                                  />
+                                </div>
+                              </div>
+                              <div className="pt-2">
+                                <button
+                                  onClick={() => setIsSignUp(!isSignUp)}
+                                  className="text-sm text-primary-400 hover:text-primary-300 transition-colors"
+                                >
+                                  Don't have an account?
+                                </button>
+                              </div>
+                            </div>
+                          </>
+                        )}
                       </div>
                     </Step>
 
-                    {/* Step 3: Password */}
+                    {/* Step 3: Email (Signup only) */}
+                    {isSignUp && (
+                      <Step>
+                        <div className="py-4">
+                          <h3 className="text-lg font-semibold text-white mb-4">
+                            Enter your email
+                          </h3>
+                          <div className="space-y-3">
+                            <div>
+                              <label className="block text-sm font-medium text-dark-300 mb-2">
+                                Email Address
+                              </label>
+                              <div className="relative">
+                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-dark-400" />
+                                <input
+                                  type="email"
+                                  value={email}
+                                  onChange={(e) => setEmail(e.target.value)}
+                                  placeholder="you@example.com"
+                                  className="w-full pl-11 pr-4 py-3 bg-dark-800 border border-white/10 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:border-primary-500 transition-colors"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </Step>
+                    )}
+
+                    {/* Step 4: Password */}
                     <Step>
                       <div className="py-4">
                         <h3 className="text-lg font-semibold text-white mb-4">
