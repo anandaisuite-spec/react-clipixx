@@ -47,7 +47,7 @@ export default function App() {
   if (currentPage === 'creator') {
     return (
       <>
-        <div className="min-h-screen bg-dark-950 text-white overflow-x-hidden relative">
+        <div className="min-h-screen bg-gray-50 dark:bg-dark-950 text-gray-900 dark:text-white overflow-x-hidden relative transition-colors duration-300">
           {/* Global Light Pillar Background */}
           <div className="fixed inset-0 z-0 pointer-events-none">
             <LightPillar
@@ -97,7 +97,7 @@ export default function App() {
 
   return (
     <>
-      <div className="min-h-screen bg-dark-950 text-white overflow-x-hidden relative">
+      <div className="min-h-screen bg-gray-50 dark:bg-dark-950 text-gray-900 dark:text-white overflow-x-hidden relative transition-colors duration-300">
         {/* Global Light Pillar Background */}
         <div className="fixed inset-0 z-0 pointer-events-none">
           <LightPillar

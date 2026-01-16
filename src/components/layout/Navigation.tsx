@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Button from '../ui/Button';
+import ThemeSwitcher from '../ui/ThemeSwitcher';
 
 const navLinks = [
   { name: 'Categories', href: '#categories' },
@@ -74,6 +75,7 @@ export default function Navigation({ onBrowseClick, onCreatorClick, onLoginClick
               </div>
 
               <div className="hidden lg:flex items-center gap-3">
+                <ThemeSwitcher />
                 <Button variant="outline" size="sm" onClick={onLoginClick}>
                   Log In
                 </Button>
@@ -147,6 +149,10 @@ export default function Navigation({ onBrowseClick, onCreatorClick, onLoginClick
                   </motion.a>
                 ))}
                 <div className="pt-6 border-t border-white/10 space-y-3">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-sm text-white/60">Theme</span>
+                    <ThemeSwitcher />
+                  </div>
                   <Button
                     variant="outline"
                     className="w-full"
