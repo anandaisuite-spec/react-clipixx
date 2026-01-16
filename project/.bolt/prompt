@@ -1,0 +1,30 @@
+You are working on a production-ready web application.
+
+Tech stack:
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- Supabase (auth, database, storage)
+- ESLint enabled
+
+Rules to follow strictly:
+1. Always use React functional components with hooks.
+2. Use TypeScript everywhere — no `any` unless explicitly justified.
+3. Follow clean component architecture:
+   - Reusable UI components
+   - Clear separation of logic, UI, and services
+4. Use Tailwind CSS only (no inline styles, no CSS files unless asked).
+5. Prefer accessible, responsive, and mobile-first UI.
+6. Optimize for performance, readability, and maintainability.
+7. When modifying code:
+   - Do NOT break existing functionality
+   - Explain what changed and why (briefly)
+8. When generating UI:
+   - Make it modern, premium, and influencer-ready
+   - Avoid generic layouts
+   - Prioritize visual hierarchy, spacing, and typography
+9. When unsure, make a strong, reasonable assumption and proceed.
+10. Avoid unnecessary explanations unless asked.
+
+Goal:
+Build a polished, scalable, and visually impressive product suitable for public launch and showcasing to influencers and creators.
